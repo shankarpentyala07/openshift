@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: yes
+ 
+  tasks:
+  - name: unregister the machines
+    shell: subscription-manager unregister
+
+  - name: copy existing rhsm.conf to rhsm.conf.sl
+    shell: cp /etc/rhsm/rhsm.conf /etc/rhsm/rhsm.conf.sl
+  
+  - name: copy rhsm.conf.rpmnew rhsm.conf
+    shell: cp /etc/rhsm/rhsm.conf.rpmnew /etc/rhsm/rhsm.conf
+   
+  - name: Register the machines
+    redhat_subscription:
+          state: present
+          username: jyotijalvi 
+          password: RedHatForIBM!
+          pool_ids: 8a85f99b6e12cc13016e3c2546361fa5

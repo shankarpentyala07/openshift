@@ -1,0 +1,33 @@
+---
+- name: Mount ibm disks for master and ibm/data disks for worker
+  hosts: [cluster]
+  
+  vars_files:
+    - ../vars/external_vars.yml
+  
+  vars:
+    dest_utils: /root/playbook
+  
+  
+  become: yes
+
+  tasks:
+
+  - name: make directory
+    file:
+      path: "{{ dest_utils }}"
+      state: directory
+    tags: mkdir
+
+  - name: copy scripts
+    copy:  
+       src: "{{ item }}"
+       dest: "{{ dest_utils }}"
+       mode: "a+x"
+    with_items:
+       - "../utils/partition_disk.sh"
+    tags: copy-scripts
+
+  - name: mount /var/lib/docker
+    command: "{{dest_utils}}/partition_disk.sh  /dev/{{ dockerdiskdevicename }} /var/lib/docker"
+    tags: dockerdisk

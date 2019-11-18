@@ -1,0 +1,11 @@
+- name: Generate Hosts
+  hosts: all
+
+  become: yes
+  
+  tasks:
+  
+  - name: copying host file
+    copy:
+     src: ../templates/hosts
+     dest: /etc/hosts

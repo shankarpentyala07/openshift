@@ -1,0 +1,10 @@
+---
+ntpserver: servertime.service.softlayer.com
+ibmdiskdevicename: xvdc
+datadiskdevicename: xvde
+dockerdiskdevicename: xvdc
+icp4dtarurl: http://ibm-open-platform.ibm.com/repos/ICP4D/v2.1.0.2/x86_64/GA/EE/icp4d_ee_2.1.0.2_x86_64.tar
+icp4dtarinstalldir: /ibm/icp4d.tar
+icp4dtarunarchivedir: /ibm/
+icp4dtaraddonurl: http://ibm-open-platform.ibm.com/repos/ICP4D/v1.2.1.0/GA/dv-ppa.tar
+icp4daddoninstalldir: /ibm/modules/dv-ppa.tar

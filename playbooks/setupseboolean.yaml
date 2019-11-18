@@ -1,0 +1,12 @@
+---
+- name: SELinux Boolean
+  hosts: all
+  tasks:
+  - name: Install libsemanage-python
+    yum:
+     name: libsemanage-python
+     state: latest
+
+  - name: set seboolean virt_use_nfs
+    seboolean: name=virt_use_nfs state=yes persistent=yes
+
