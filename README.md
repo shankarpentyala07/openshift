@@ -4,6 +4,7 @@ Openshift:
 
 Official Doc: https://docs.openshift.com/container-platform/3.11/install/host_preparation.html.    (Host Preparation)
 
+Please make sure your ansible version is greater than or equal to  2.7.10
 #Machine Prep
 
 ansible-playbook -i hosts_os311_cx2 playbooks/redhat.yml 
