@@ -5,15 +5,16 @@ Openshift:
 Official Doc: https://docs.openshift.com/container-platform/3.11/install/host_preparation.html.    (Host Preparation)
 
 #Machine Prep
+
 ansible-playbook -i hosts_os311_cx2 playbooks/redhat.yml 
- ansible-playbook -i hosts_os311_cx2 playbooks/osenablerepos.yml 
+ 
+ansible-playbook -i hosts_os311_cx2 playbooks/osenablerepos.yml 
 
 ansible-playbook -i hosts_os311_cx2 playbooks/ipv4forwardingenable.yml 
 
- ansible-playbook -i hosts_os311_cx2 playbooks/osselinuxlatest.yml 
+ansible-playbook -i hosts_os311_cx2 playbooks/osselinuxlatest.yml 
 
 ansible-playbook -i hosts_os311_cx2 playbooks/generatehosts.yml 
-
 
 ansible-playbook -i hosts_os311_cx2 playbooks/networkmngrlatest.yml
 
