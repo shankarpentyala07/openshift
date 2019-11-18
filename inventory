@@ -14,15 +14,15 @@ openshift_docker_insecure_registries="172.30.0.0/16"
 openshift_disable_check=docker_image_availability
 oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
 oreg_auth_user=jyotijalvi
-oreg_auth_password=RedHatForIBM!
+oreg_auth_password=<password>
 openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
 openshift_master_htpasswd_users={'ocadmin': '$apr1$CdyzN7vS$wM6gchgqURLe1A7gQRbIi0'}
 ansible_ssh_user=root
 os_firewall_use_firewalld=True
 openshift_master_cluster_method=native
-openshift_master_cluster_hostname=os311-cx2.demo.ibmcloudpack.com
-openshift_master_cluster_public_hostname=os311-cx2.demo.ibmcloudpack.com
-openshift_master_default_subdomain=os311-cx2.demo.ibmcloudpack.com
+openshift_master_cluster_hostname=cx311-cx2.demo.ibmcloudpack.com
+openshift_master_cluster_public_hostname=cx311-cx2.demo.ibmcloudpack.com
+openshift_master_default_subdomain=cx311-cx2.demo.ibmcloudpack.com
 openshift_disable_check=memory_availability,disk_availability,docker_storage,docker_storage_driver,docker_image_availability,package_version,package_availability,package_update
 # CRI-O
 openshift_use_crio=False
@@ -44,30 +44,30 @@ openshift_hosted_registry_storage_volume_size=200Gi
 
 # host group for masters
 [masters]
-os311-cx2-master-01.demo.ibmcloudpack.com
-os311-cx2-master-02.demo.ibmcloudpack.com
-os311-cx2-master-03.demo.ibmcloudpack.com
+cx311-cx2-master-01.demo.ibmcloudpack.com
+cx311-cx2-master-02.demo.ibmcloudpack.com
+cx311-cx2-master-03.demo.ibmcloudpack.com
 
 # host group for etcd
 [etcd]
-os311-cx2-master-01.demo.ibmcloudpack.com
-os311-cx2-master-02.demo.ibmcloudpack.com
-os311-cx2-master-03.demo.ibmcloudpack.com
+cx311-cx2-master-01.demo.ibmcloudpack.com
+cx311-cx2-master-02.demo.ibmcloudpack.com
+cx311-cx2-master-03.demo.ibmcloudpack.com
 
 # load balancer
 [lb]
-os311-cx2.demo.ibmcloudpack.com
+cx311-cx2.demo.ibmcloudpack.com
 
 # nfs server
 [nfs]
-os311-cx2-worker-01.demo.ibmcloudpack.com
+cx311-cx2-worker-01.demo.ibmcloudpack.com
 
 # host group for nodes
 [nodes]
-os311-cx2-master-01.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
-os311-cx2-master-02.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
-os311-cx2-master-03.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
-os311-cx2.demo.ibmcloudpack.com openshift_node_group_name="node-config-infra"
-os311-cx2-worker-01.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
-os311-cx2-worker-02.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
-os311-cx2-worker-03.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
+cx311-cx2-master-01.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
+cx311-cx2-master-02.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
+cx311-cx2-master-03.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
+cx311-cx2.demo.ibmcloudpack.com openshift_node_group_name="node-config-infra"
+cx311-cx2-worker-01.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
+cx311-cx2-worker-02.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
+cx311-cx2-worker-03.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
