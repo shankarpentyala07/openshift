@@ -1,0 +1,73 @@
+# define openshift components
+[OSEv3:children]
+masters
+nodes
+nfs
+etcd
+lb
+
+# define openshift variables
+[OSEv3:vars]
+containerized=true
+openshift_deployment_type=openshift-enterprise
+openshift_docker_insecure_registries="172.30.0.0/16"
+openshift_disable_check=docker_image_availability
+oreg_url=registry.access.redhat.com/openshift3/ose-${component}:${version}
+oreg_auth_user=jyotijalvi
+oreg_auth_password=RedHatForIBM!
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_htpasswd_users={'ocadmin': '$apr1$CdyzN7vS$wM6gchgqURLe1A7gQRbIi0'}
+ansible_ssh_user=root
+os_firewall_use_firewalld=True
+openshift_master_cluster_method=native
+openshift_master_cluster_hostname=os311-cx2.demo.ibmcloudpack.com
+openshift_master_cluster_public_hostname=os311-cx2.demo.ibmcloudpack.com
+openshift_master_default_subdomain=os311-cx2.demo.ibmcloudpack.com
+openshift_disable_check=memory_availability,disk_availability,docker_storage,docker_storage_driver,docker_image_availability,package_version,package_availability,package_update
+# CRI-O
+openshift_use_crio=False
+openshift_use_crio_only=False
+# NFS Host Group
+# An NFS volume will be created with path "nfs_directory/volume_name"
+# on the host within the [nfs] host group.  For example, the volume
+# path using these options would be "/exports/registry".  "exports" is
+# is the name of the export served by the nfs server.  "registry" is
+# the name of a directory inside of "/exports".
+openshift_hosted_registry_storage_kind=nfs
+openshift_hosted_registry_storage_access_modes=['ReadWriteMany']
+# nfs_directory must conform to DNS-1123 subdomain must consist of lower case
+# alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character
+openshift_hosted_registry_storage_nfs_directory=/data
+openshift_hosted_registry_storage_nfs_options='*(rw,no_root_squash,anonuid=1000,anongid=2000)'
+openshift_hosted_registry_storage_volume_name=registry
+openshift_hosted_registry_storage_volume_size=200Gi
+
+# host group for masters
+[masters]
+os311-cx2-master-01.demo.ibmcloudpack.com
+os311-cx2-master-02.demo.ibmcloudpack.com
+os311-cx2-master-03.demo.ibmcloudpack.com
+
+# host group for etcd
+[etcd]
+os311-cx2-master-01.demo.ibmcloudpack.com
+os311-cx2-master-02.demo.ibmcloudpack.com
+os311-cx2-master-03.demo.ibmcloudpack.com
+
+# load balancer
+[lb]
+os311-cx2.demo.ibmcloudpack.com
+
+# nfs server
+[nfs]
+os311-cx2-worker-01.demo.ibmcloudpack.com
+
+# host group for nodes
+[nodes]
+os311-cx2-master-01.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
+os311-cx2-master-02.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
+os311-cx2-master-03.demo.ibmcloudpack.com openshift_node_group_name="node-config-master-infra"
+os311-cx2.demo.ibmcloudpack.com openshift_node_group_name="node-config-infra"
+os311-cx2-worker-01.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
+os311-cx2-worker-02.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
+os311-cx2-worker-03.demo.ibmcloudpack.com openshift_node_group_name="node-config-compute"
