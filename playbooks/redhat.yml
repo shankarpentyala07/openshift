@@ -16,5 +16,5 @@
     redhat_subscription:
           state: present
           username: jyotijalvi 
-          password: RedHatForIBM!
+          password: <xyz>
           pool_ids: 8a85f99b6e12cc13016e3c2546361fa5
